@@ -7,7 +7,7 @@ import { store } from "./redux/configStore";
 import * as signalR from "@aspnet/signalr";
 
 //antd
-import "antd/dist/antd.css";
+// import "antd/dist/antd.css";
 
 //i18n đa ngôn ngữ
 import "./i18n";

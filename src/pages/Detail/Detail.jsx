@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { CustomCard } from "@tsamantanis/react-glassmorphism";
-import "@tsamantanis/react-glassmorphism/dist/index.css";
+// import { CustomCard } from "@tsamantanis/react-glassmorphism";
+// import "@tsamantanis/react-glassmorphism/dist/index.css";
 import "../../assets/styles/circle.css";
 import { Tabs, Rate } from "antd";
 import { useSelector, useDispatch } from "react-redux";
@@ -29,7 +29,7 @@ export default function Detail(props) {
         minHeight: "100vh",
       }}
     >
-      <CustomCard
+      {/* <CustomCard
         style={{ paddingTop: 150, minHeight: "100vh" }}
         effectColor="#fff"
         blur={10}
@@ -180,7 +180,7 @@ export default function Detail(props) {
             ></iframe>
           </div>
         </CSSTransition>
-      </CustomCard>
+      </CustomCard> */}
     </div>
   );
 }

@@ -17,7 +17,7 @@ import {
   layChiTietPhongVeAction,
 } from "../../redux/actions/QuanLyDatVeActions";
 import { DAT_GHE } from "../../redux/actions/types/QuanLyDatVeType";
-import { ThongTinDatVe } from "../../_core/models/ThongTinDatVe";
+import { ThongTinDatVe } from "../../_core/model/ThongTinDatVe";
 import { layThongTinUserAction } from "../../redux/actions/QuanLyNguoiDungAction";
 import moment from "moment";
 import { connection } from "../..";

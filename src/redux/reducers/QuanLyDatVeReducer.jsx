@@ -4,7 +4,7 @@ import {
   DAT_VE_HOAN_TAT,
   SET_CHI_TIET_PHONG_VE,
 } from "../actions/types/QuanLyDatVeType";
-import { ThongTinLichChieu } from "../../_core/models/ThongTinPhongVe";
+import { ThongTinLichChieu } from "../../_core/model/ThongTinPhongVe";
 
 const stateDefault = {
   chiTietPhongVe: new ThongTinLichChieu(),

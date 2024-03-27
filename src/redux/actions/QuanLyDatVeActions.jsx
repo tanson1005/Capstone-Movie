@@ -1,5 +1,5 @@
 import { quanLyDatVeService } from "../../services/QuanLyDatVeService";
-import { ThongTinDatVe } from "../../_core/models/ThongTinDatVe";
+import { ThongTinDatVe } from "../../_core/model/ThongTinDatVe";
 import { connection } from "../../index";
 import {
   DAT_VE,

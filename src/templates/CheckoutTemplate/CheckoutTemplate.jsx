@@ -1,8 +1,10 @@
 import { Fragment, useEffect } from "react";
-import { Redirect, Route } from "react-router";
+import { Route, useHistory } from 'react-router-dom';
 import { USER_LOGIN } from "../../util/settings/config";
 
 export const CheckoutTemplate = (props) => {
+  const history = useHistory();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -10,7 +12,7 @@ export const CheckoutTemplate = (props) => {
   const { Component, ...restProps } = props;
 
   if (!localStorage.getItem(USER_LOGIN)) {
-    return <Redirect to="/login" />;
+    history.push("/login");
   }
 
   return (

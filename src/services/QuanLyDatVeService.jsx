@@ -1,5 +1,5 @@
 import { baseService } from "./baseService";
-import { ThongTinDatVe } from "../_core/models/ThongTinDatVe";
+import { ThongTinDatVe } from "../_core/model/ThongTinDatVe";
 export class QuanLyDatVeService extends baseService {
   layChiTietPhongVe = (maLichChieu) => {
     return this.get(
