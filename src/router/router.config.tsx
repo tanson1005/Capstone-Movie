@@ -8,14 +8,14 @@ import { lazy } from "react";
 
 // import Home from "../pages/home/home";
 // import Detail from "../pages/detail/detail";
-const Home = lazy(() => import("../pages/home/home"));
-const Detail = lazy(() => import("../pages/detail/detail")); // chưa xong
+const Home = lazy(() => import("../pages/Home/Home"));
+const Detail = lazy(() => import("../pages/Detail/Detail")); // chưa xong
 
 // ---
 import { Carts } from "../pages/carts/carts";
-import { Login } from "../pages/login/login";
+import { Login } from "../pages/Login/Login";
 import { Profile } from "../pages/profile/profile";
-import { Register } from "../pages/register/register";
+import { Register } from "../pages/Register/Register";
 import { Search } from "../pages/search/search";
 import { AdminTemplate } from "../templates/admin/admin.template";
 import { UserTemplate } from "../templates/user/user.template";

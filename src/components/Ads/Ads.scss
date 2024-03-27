@@ -1,0 +1,24 @@
+.ads {
+    background: url("./background.jpg");
+    padding: 60px 0;
+    width: 100%;
+  }
+  
+  .slick-slide img {
+    display: block;
+    /* width: fit-content; */
+    width: 80%;
+    /* border: 12px; */
+    border-radius: 12px;
+    border: 1px solid black;
+  }
+  
+  .col-span-4.col-start-3.text-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  button.btnDownload {
+      width: fit-content;
+  }
