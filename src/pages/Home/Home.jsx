@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import HomeMenu from "./HomeMenu/HomeMenu";
 import { useSelector, useDispatch } from "react-redux";
+import HomeMenu from "./HomeMenu/HomeMenu";
 import MultipleRowSlick from "../../components/RSlick/MultipleRowSlick";
 import { layDanhSachPhimAction } from "../../redux/actions/types/QuanLyPhimActions";
 import { layDanhSachHeThongRapAction } from "../../redux/actions/QuanLyRapActions";

@@ -1,5 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
-import thunk from "redux-thunk";
+import {thunk} from "redux-thunk";
 import { CarouselReducer } from "./reducers/CarouselReducer";
 import { QuanLyDatVeReducer } from "./reducers/QuanLyDatVeReducer";
 import { QuanLyNguoiDungReducer } from "./reducers/QuanLyNguoiDungReducer";

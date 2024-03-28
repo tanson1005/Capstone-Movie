@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Redirect, Route } from "react-router";
+import { Route, useNavigate } from "react-router";
 import { TOKEN, USER_LOGIN } from "../../util/settings/config";
 import { Layout, Menu, Breadcrumb, Dropdown } from "antd";
 import {
@@ -22,6 +22,7 @@ const { SubMenu } = Menu;
 const AdminTemplate = (props) => {
   const { Component, ...restProps } = props;
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
+  const navigate = useNavigate();
 
   const [collapsed, setCollapsed] = useState(false);
 
@@ -33,57 +34,15 @@ const AdminTemplate = (props) => {
     window.scrollTo(0, 0);
   });
 
-  if (!localStorage.getItem(USER_LOGIN)) {
-    alert("Bạn không có quyền truy cập vào trang này !");
-    return <Redirect to="/" />;
-  }
+  const handleLogout = () => {
+    localStorage.removeItem(USER_LOGIN);
+    localStorage.removeItem(TOKEN);
+    navigate("/login");
+  };
 
-  if (userLogin.maLoaiNguoiDung !== "QuanTri") {
-    alert("Bạn không có quyền truy cập vào trang này !");
-    return <Redirect to="/" />;
-  }
-
-  const menu = (
-    <Menu>
-      <Menu.Item>
-        <button
-          onClick={() => {
-            localStorage.removeItem(USER_LOGIN);
-            localStorage.removeItem(TOKEN);
-            history.push("/login");
-          }}
-        >
-          Đăng xuất
-        </button>
-      </Menu.Item>
-      <Menu.Item>
-        <button
-          onClick={() => {
-            history.push("/");
-          }}
-        >
-          Trang chủ
-        </button>
-      </Menu.Item>
-    </Menu>
-  );
-
-  const operations = (
-    <Fragment>
-      {!_.isEmpty(userLogin) ? (
-        <Dropdown overlay={menu}>
-          <button
-            className="ant-dropdown-link text-white"
-            onClick={(e) => e.preventDefault()}
-          >
-            Hello {userLogin.taiKhoan} <DownOutlined />
-          </button>
-        </Dropdown>
-      ) : (
-        ""
-      )}
-    </Fragment>
-  );
+  const handleGoToHome = () => {
+    navigate("/");
+  };
 
   return (
     <Route
@@ -125,7 +84,22 @@ const AdminTemplate = (props) => {
                   className="site-layout-background"
                   style={{ padding: 0 }}
                 >
-                  <div className="text-right pr-10 pt-1">{operations}</div>
+                  <div className="text-right pr-10 pt-1">
+                    {!_.isEmpty(userLogin) && (
+                      <Dropdown
+                        overlay={
+                          <Menu>
+                            <Menu.Item onClick={handleLogout}>Đăng xuất</Menu.Item>
+                            <Menu.Item onClick={handleGoToHome}>Trang chủ</Menu.Item>
+                          </Menu>
+                        }
+                      >
+                        <button className="ant-dropdown-link text-white" onClick={(e) => e.preventDefault()}>
+                          Hello {userLogin.taiKhoan} <DownOutlined />
+                        </button>
+                      </Dropdown>
+                    )}
+                  </div>
                 </Header>
                 <Content style={{ margin: "0 16px" }}>
                   <Breadcrumb style={{ margin: "16px 0" }}></Breadcrumb>

@@ -1,6 +1,6 @@
 import "./App.css";
 import { createBrowserHistory } from "history";
-import { Router, Switch } from "react-router";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HomeTemplate } from "./templates/HomeTemplate/HomeTemplate";
 import Home from "./pages/Home/Home";
 import News from "./pages/News/News";
@@ -25,37 +25,24 @@ export const history = createBrowserHistory();
 function App() {
   return (
     <Router history={history}>
-      <Switch>
-        <HomeTemplate path="/home" exact Component={Home} />
-        <HomeTemplate path="/" exact Component={Home} />
-        <HomeTemplate path="/news" exact Component={News} />
-
-        <UserTemplate path="/login" exact Component={Login} />
-        <UserTemplate path="/register" exact Component={Register} />
-
-        <DetailTemplate path="/detail/:id" exact Component={Detail} />
-
-        <CheckoutTemplate path="/checkout/:id" exact Component={Checkout} />
-
-        <AdminTemplate path="/admin" exact Component={Users} />
-        <AdminTemplate path="/admin/films" exact Component={Films} />
-        <AdminTemplate path="/admin/films/addnew" exact Component={AddNew} />
-        <AdminTemplate path="/admin/films/edit/:id" exact Component={Edit} />
-        <AdminTemplate path="/admin/users" exact Component={Users} />
-        <AdminTemplate path="/admin/users/addnew" exact Component={AddUser} />
-        <AdminTemplate
-          path="/admin/users/edit/:tk"
-          exact
-          Component={EditUser}
-        />
-        <AdminTemplate
-          path="/admin/films/showtime/:id/:tenphim"
-          exact
-          Component={ShowTime}
-        />
-
-        <HomeTemplate path="/" exact Component={Home} />
-      </Switch>
+      <Routes>
+        <Route path="/home" element={<HomeTemplate Component={Home} />} />
+        <Route path="/news" element={<HomeTemplate Component={News} />} />
+        <Route path="/login" element={<UserTemplate Component={Login} />} />
+        <Route path="/register" element={<UserTemplate Component={Register} />} />
+        <Route path="/detail/:id" element={<DetailTemplate Component={Detail} />} />
+        <Route path="/checkout/:id" element={<CheckoutTemplate Component={Checkout} />} />
+        <Route path="/admin/*" element={<AdminTemplate />}>
+          <Route path="/films" element={<Films />} />
+          <Route path="/films/addnew" element={<AddNew />} />
+          <Route path="/films/edit/:id" element={<Edit />} />
+          <Route path="/films/showtime/:id/:tenphim" element={<ShowTime />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/users/addnew" element={<AddUser />} />
+          <Route path="/users/edit/:tk" element={<EditUser />} />
+        </Route>
+        <Route path="/" element={<HomeTemplate Component={Home} />} />
+      </Routes>
     </Router>
   );
 }
