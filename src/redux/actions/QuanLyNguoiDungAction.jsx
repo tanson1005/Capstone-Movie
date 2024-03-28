@@ -1,4 +1,7 @@
 import { quanLyNguoiDungService } from "../../services/QuanLyNguoiDung";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+
 import {
   CLOSE_MODAL_USER,
   DANG_NHAP_ACTION,
@@ -7,10 +10,9 @@ import {
   LAY_DANH_SACH_NGUOI_DUNG_KEYWORD,
   LAY_THONG_TIN_USER,
 } from "./types/QuanLyNguoiDungType";
-import { history } from "../../App";
-import Swal from "sweetalert2";
 
-export const dangNhapAction = (thongTinDangNhap) => {
+export const dangNhapAction = (thongTinDangNhap, history) => {
+  const navigate = useNavigate();
   return async (dispatch) => {
     try {
       const result = await quanLyNguoiDungService.dangNhap(thongTinDangNhap);
@@ -20,7 +22,7 @@ export const dangNhapAction = (thongTinDangNhap) => {
           type: DANG_NHAP_ACTION,
           thongTinDangNhap: result.data.content,
         });
-         Swal.fire({
+        Swal.fire({
           title: "Đăng nhập thành công!",
           icon: "success",
           html: "Thông báo tự động tắt sau 2 giây",
@@ -28,7 +30,7 @@ export const dangNhapAction = (thongTinDangNhap) => {
           timerProgressBar: true,
           confirmButtonText: "Ok",
         });
-        history.goBack();
+        navigate(-1); // Quay lại trang trước
       }
     } catch (error) {
       Swal.fire({

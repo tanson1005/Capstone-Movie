@@ -5,7 +5,7 @@ import {
   SET_THONG_TIN_PHIM,
 } from "./types/QuanLyPhimType";
 import Swal from "sweetalert2";
-import { history } from "../../App";
+import { userNavigation } from "../../App";
 
 export const layDanhSachPhimAction = () => {
   return async (dispatch) => {
@@ -49,7 +49,7 @@ export const themMoiPhimAction = (formData) => {
           timerProgressBar: true,
           confirmButtonText: "Ok",
         });
-        history.goBack();
+        userNavigation.push("/admin/films"); // Use userNavigation directly
       }
     } catch (errors) {
       Swal.fire({
@@ -76,7 +76,7 @@ export const capNhatPhimAction = (formData) => {
           confirmButtonText: "Ok",
         });
         await dispatch(layDanhSachPhimAction());
-        history.push("/admin/films");
+        userNavigation.push("/admin/films"); // Use userNavigation directly
       }
     } catch (errors) {
       Swal.fire({

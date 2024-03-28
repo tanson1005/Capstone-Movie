@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
-import { NavLink } from "react-router-dom";
-import { history } from "../../../../App";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import _ from "lodash";
 import {
@@ -14,8 +13,8 @@ import { TOKEN, USER_LOGIN } from "../../../../util/settings/config";
 import { OPEN_MODAL_USER } from "../../../../redux/actions/types/QuanLyNguoiDungType";
 
 export default function Header() {
+  const navigate = useNavigate();
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
-  console.log(userLogin);
   const dispatch = useDispatch();
   const menu = (
     <Menu>
@@ -60,6 +59,7 @@ export default function Header() {
       </Menu.Item>
     </Menu>
   );
+
   return (
     <header className="bg-opacity-40 bg-black text-lg text-white fixed w-full z-10">
       <div className=" flex justify-between items-center mx-10 h-14 ">
@@ -77,14 +77,14 @@ export default function Header() {
               <button
                 className="font-bold self-center pr-10"
                 onClick={() => {
-                  history.push("/register");
+                  navigate("/register");
                 }}
               >
                 Sign up
               </button>
               <button
                 onClick={() => {
-                  history.push("/login");
+                  navigate("/login");
                 }}
                 className=" font-bold "
               >

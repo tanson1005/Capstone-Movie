@@ -8,7 +8,7 @@ import {
 } from "../../../redux/actions/QuanLyNguoiDungAction";
 import { NavLink } from "react-router-dom";
 import { DeleteOutlined, EditOutlined, PlusOutlined } from "@ant-design/icons";
-import { history } from "../../../App";
+import { userNavigation } from "../../../App";
 
 export default function Users() {
   const { arrUser } = useSelector((state) => state.QuanLyNguoiDungReducer);
@@ -93,7 +93,7 @@ export default function Users() {
         <Button
           className="mb-5 pb-2"
           onClick={() => {
-            history.push("/admin/users/addnew");
+            userNavigation.push("/admin/users/addnew");
           }}
           type="danger"
           shape="round"

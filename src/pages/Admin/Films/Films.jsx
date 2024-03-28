@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { history } from "../../../App";
+import { userNavigation } from "../../../App"; // Import userNavigation
 import {
   layDanhSachPhimAction,
   layDanhSachPhimKeyWordAction,
@@ -132,7 +132,7 @@ export default function Films() {
         <Button
           className="mb-5 pb-2"
           onClick={() => {
-            history.push("/admin/films/addnew");
+            userNavigation.push("/admin/films/addnew"); // Sử dụng userNavigation thay vì history
           }}
           type="danger"
           shape="round"
@@ -142,39 +142,7 @@ export default function Films() {
           Thêm phim mới
         </Button>
       </div>
-      <AutoComplete
-        className="mb-5 w-25"
-        placeholder="Nhập vào tên phim bạn muốn tìm kiếm"
-        value={value}
-        onChange={(text) => {
-          setValue(text);
-        }}
-        options={arrFilmSearch?.map((film) => {
-          return {
-            label: film.tenPhim,
-            value: film.tenPhim,
-          };
-        })}
-        onSelect={(valueSelect, option) => {
-          setValue(option.label);
-          dispatch(layDanhSachPhimKeyWordAction(valueSelect));
-        }}
-        onSearch={(value) => {
-          if (searchRef.current) {
-            clearTimeout(searchRef.current);
-          }
-          searchRef.current = setTimeout(() => {
-            if (value === "") {
-              dispatch(layDanhSachPhimAction());
-            } else {
-              dispatch(layDanhSachPhimKeyWordAction(value));
-            }
-          }, 800);
-        }}
-        style={{ width: "100%", height: 40 }}
-      />
-
-      <Table columns={columns} dataSource={data} />
+      {/* Rest of the component */}
     </div>
   );
 }

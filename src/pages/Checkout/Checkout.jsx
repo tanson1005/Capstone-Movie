@@ -8,21 +8,17 @@ import {
   DownOutlined,
   HomeOutlined,
 } from "@ant-design/icons";
-import style from "./Checkout.module.css";
 import { Tabs, Menu, Dropdown } from "antd";
 import _ from "lodash";
-import {
-  datGheAction,
-  datVeAction,
-  layChiTietPhongVeAction,
-} from "../../redux/actions/QuanLyDatVeActions";
+import moment from "moment";
+import { datGheAction, datVeAction, layChiTietPhongVeAction } from "../../redux/actions/QuanLyDatVeActions";
 import { DAT_GHE } from "../../redux/actions/types/QuanLyDatVeType";
 import { ThongTinDatVe } from "../../_core/model/ThongTinDatVe";
 import { layThongTinUserAction } from "../../redux/actions/QuanLyNguoiDungAction";
-import moment from "moment";
-import { connection } from "../..";
 import { TOKEN, USER_LOGIN } from "../../util/settings/config";
-import { history } from "../../App";
+import { userNavigation } from "../../App"; // Import userNavigation
+import style from "./Checkout.module.css";
+import { connection } from "../..";
 
 function Checkout(props) {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
@@ -295,7 +291,7 @@ export default function CheckoutTab(props) {
           onClick={() => {
             localStorage.removeItem(USER_LOGIN);
             localStorage.removeItem(TOKEN);
-            history.push("/login");
+            userNavigation.push("/login"); // Use userNavigation here
           }}
         >
           Đăng xuất
@@ -312,7 +308,7 @@ export default function CheckoutTab(props) {
             <HomeOutlined
               className="text-xl mr-4 hover:text-success-400"
               onClick={() => {
-                history.push("/home");
+                userNavigation.push("/home"); // Use userNavigation here
               }}
             />
           </button>

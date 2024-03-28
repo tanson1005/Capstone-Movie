@@ -8,7 +8,7 @@ import { useFormik } from "formik";
 import moment from "moment";
 import { quanLyDatVeService } from "../../../services/QuanLyDatVeService";
 import Swal from "sweetalert2";
-import { history } from "../../../App";
+import { userNavigation } from "../../../App";
 
 export default function ShowTime(props) {
   const [state, setState] = useState({
@@ -35,7 +35,7 @@ export default function ShowTime(props) {
             timerProgressBar: true,
             confirmButtonText: "Ok",
           });
-          await history.push("/admin/films");
+          await userNavigation.push("/admin/films");
         }
       } catch (errors) {
         Swal.fire({
@@ -48,14 +48,18 @@ export default function ShowTime(props) {
     },
   });
 
-  useEffect(async () => {
-    try {
-      let result = await quanLyRapService.layThongTinHeThongRap();
-      setState({
-        ...state,
-        heThongRapChieu: result.data.content,
-      });
-    } catch (error) {}
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        let result = await quanLyRapService.layThongTinHeThongRap();
+        setState({
+          ...state,
+          heThongRapChieu: result.data.content,
+        });
+      } catch (error) {}
+    };
+
+    fetchData();
   }, []);
 
   const handleChangeHeThongRap = async (value) => {
@@ -80,6 +84,7 @@ export default function ShowTime(props) {
       moment(values).format("DD/MM/YYYY hh:mm:ss")
     );
   };
+
   const onchangeInputNumber = (value) => {
     formik.setFieldValue("giaVe", value);
   };

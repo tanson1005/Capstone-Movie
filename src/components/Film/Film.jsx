@@ -1,11 +1,13 @@
 import React from "react";
-import { history } from "../../App";
+import { useNavigate } from "react-router-dom";
+
 export default function Film(props) {
+  const navigate = useNavigate();
   const { phim } = props;
 
   return (
     <div className="px-2 overflow-hidden film">
-      <div className="relative ">
+      <div className="relative">
         <img
           src={phim.hinhAnh}
           alt={phim.tenPhim}
@@ -17,7 +19,7 @@ export default function Film(props) {
         />
         <div
           onClick={() => {
-            history.push(`/detail/${phim.maPhim}`);
+            navigate(`/detail/${phim.maPhim}`);
           }}
           className="gradient"
         ></div>
@@ -27,13 +29,13 @@ export default function Film(props) {
         <span className="text-white bg-yellow-400 px-1 py-0.5 mr-2 rounded-md">
           C18
         </span>
-        {phim.tenPhim} 
+        {phim.tenPhim}
       </h1>
 
       <button
         className="py-1 btn-booking bg-yellow-500 font-bold text-white text-xl rounded-md"
         onClick={() => {
-          history.push(`/detail/${phim.maPhim}`);
+          navigate(`/detail/${phim.maPhim}`);
         }}
       >
         MUA VÉ
