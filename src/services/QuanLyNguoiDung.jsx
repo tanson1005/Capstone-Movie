@@ -27,19 +27,19 @@ export class QuanLyNguoiDungService extends baseService {
   };
 
   layDanhSachLoaiNguoiDung = () => {
-    return this.get("api/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung");
+    return this.get("/api/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung");
   };
 
   themNguoiDung = (user) => {
-    return this.post("api/QuanLyNguoiDung/ThemNguoiDung", user);
+    return this.post("/api/QuanLyNguoiDung/ThemNguoiDung", user);
   };
 
   capNhatNguoiDung =  (user) => {
-    return this.post("api/QuanLyNguoiDung/CapNhatThongTinNguoiDung", user);
+    return this.post("/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung", user);
   };
 
   xoaNguoiDung = (taiKhoan) => {
-    return this.delete(`api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`);
+    return this.delete(`/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`);
   };
 }
 

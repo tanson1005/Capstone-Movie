@@ -22,7 +22,6 @@ import { createBrowserHistory } from 'history';
 export const userNavigation = createBrowserHistory();
 function App() {
   return (
-    <Router>
       <Routes>
         <Route path="/home" element={<HomeTemplate Component={Home} />} />
         <Route path="/news" element={<HomeTemplate Component={News} />} />
@@ -41,7 +40,6 @@ function App() {
         </Route>
         <Route path="/" element={<HomeTemplate Component={Home} />} />
       </Routes>
-    </Router>
   );
 }
 
