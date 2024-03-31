@@ -18,7 +18,7 @@ import { layThongTinUserAction } from "../../redux/actions/QuanLyNguoiDungAction
 import { TOKEN, USER_LOGIN } from "../../util/settings/config";
 import { userNavigation } from "../../App"; // Import userNavigation
 import style from "./Checkout.module.css";
-import { connection } from "../..";
+// import { connection } from "../..";
 
 function Checkout(props) {
   const { userLogin } = useSelector((state) => state.QuanLyNguoiDungReducer);
@@ -29,29 +29,30 @@ function Checkout(props) {
 
   useEffect(() => {
     dispatch(layChiTietPhongVeAction(props.match.params.id));
+    dispatch(layChiTietPhongVeAction(props.match.params.id));
+    
+    // connection.on("datVeThanhCong", () => {
+    //   dispatch(layChiTietPhongVeAction(props.match.params.id));
+    // });
+    // connection.invoke("loadDanhSachGhe", props.match.params.id);
+    // connection.on("loadDanhSachGheDaDat", (dsGheKhachDat) => {
+    //   dsGheKhachDat = dsGheKhachDat.filter(
+    //     (item) => item.taiKhoan !== userLogin.taiKhoan
+    //   );
 
-    connection.on("datVeThanhCong", () => {
-      dispatch(layChiTietPhongVeAction(props.match.params.id));
-    });
-    connection.invoke("loadDanhSachGhe", props.match.params.id);
-    connection.on("loadDanhSachGheDaDat", (dsGheKhachDat) => {
-      dsGheKhachDat = dsGheKhachDat.filter(
-        (item) => item.taiKhoan !== userLogin.taiKhoan
-      );
+    //   let arrGheKhachDat = dsGheKhachDat.reduce((result, item, index) => {
+    //     let arrGhe = JSON.parse(item.danhSachGhe);
 
-      let arrGheKhachDat = dsGheKhachDat.reduce((result, item, index) => {
-        let arrGhe = JSON.parse(item.danhSachGhe);
+    //     return [...result, ...arrGhe];
+    //   }, []);
 
-        return [...result, ...arrGhe];
-      }, []);
+    //   arrGheKhachDat = _.uniqBy(arrGheKhachDat, "maGhe");
 
-      arrGheKhachDat = _.uniqBy(arrGheKhachDat, "maGhe");
-
-      dispatch({
-        type: DAT_GHE,
-        arrGheKhachDat,
-      });
-    });
+    //   dispatch({
+    //     type: DAT_GHE,
+    //     arrGheKhachDat,
+    //   });
+    // });
 
     window.addEventListener("beforeunload", clearGhe);
 
@@ -63,7 +64,7 @@ function Checkout(props) {
   }, []);
 
   const clearGhe = function (event) {
-    connection.invoke("huyDat", userLogin.taiKhoan, props.match.params.id);
+    // connection.invoke("huyDat", userLogin.taiKhoan, props.match.params.id);
   };
 
   const renderSeats = () => {

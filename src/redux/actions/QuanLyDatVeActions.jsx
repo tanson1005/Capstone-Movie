@@ -1,6 +1,6 @@
 import { quanLyDatVeService } from "../../services/QuanLyDatVeService";
 import { ThongTinDatVe } from "../../_core/model/ThongTinDatVe";
-import { connection } from "../../index";
+// import { connection } from "../../index";
 import {
   DAT_VE,
   DAT_VE_HOAN_TAT,
@@ -48,11 +48,11 @@ export const datVeAction = (thongTinDatVe = new ThongTinDatVe()) => {
         await dispatch(layThongTinUserAction());
 
         let userLogin = getState().QuanLyNguoiDungReducer.userLogin;
-        connection.invoke(
-          "datGheThanhCong",
-          userLogin.taiKhoan,
-          thongTinDatVe.maLichChieu
-        );
+        // connection.invoke(
+        //   "datGheThanhCong",
+        //   userLogin.taiKhoan,
+        //   thongTinDatVe.maLichChieu
+        // );
       }
     } catch (error) {
       Swal.fire({
@@ -80,6 +80,6 @@ export const datGheAction = (ghe, maLichChieu) => {
     danhSachGheDangDat = JSON.stringify(danhSachGheDangDat);
 
     //Call api signalR
-    connection.invoke("datGhe", taiKhoan, danhSachGheDangDat, maLichChieu);
+    // connection.invoke("datGhe", taiKhoan, danhSachGheDangDat, maLichChieu);
   };
 };

@@ -14,13 +14,13 @@ export const HomeTemplate = (props) => {
       {...restProps}
       render={(propsRoute) => {
         return (
-          <Fragment>
+          <div>
             <Header {...propsRoute} />
 
             <Component {...propsRoute} />
 
             <Footer />
-          </Fragment>
+          </div>
         );
       }}
     />
