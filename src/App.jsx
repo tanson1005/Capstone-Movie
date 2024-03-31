@@ -19,7 +19,13 @@ import Users from "./pages/Admin/Users/Users";
 import AddUser from "./pages/Admin/Users/AddUser";
 import EditUser from "./pages/Admin/Users/EditUser";
 import { createBrowserHistory } from "history";
+import { lazy } from "react";
 export const userNavigation = createBrowserHistory();
+
+const HomeLazy = lazy(() => {
+    return import("./pages/Home/Home");
+});
+
 function App() {
     return (
         <BrowserRouter>
@@ -60,7 +66,25 @@ function App() {
                     <Route path="users/addnew" element={<AddUser />} />
                     <Route path="users/edit/:tk" element={<EditUser />} />
                 </Route> */}
-                <Route path="/" element={<Home />} />
+                {/* <Route path="/" element={<Home />} /> */}
+                {/* //lazy -> khi nào xài thì download (khi component được xuất hiện ra màn hình) -> cải thien hiệu năng*/}
+
+                <Route path="" element={<HomeTemplate />}>
+                    <Route path="" element={<HomeLazy />}></Route>
+                    <Route path="/news" element={<div>News page</div>}></Route>
+                </Route>
+                <Route path="/adminPage" element={<AdminTemplate />}>
+                    <Route path="films" element={<Films />} />
+                    <Route path="films/addnew" element={<AddNew />} />
+                    <Route path="films/edit/:id" element={<Edit />} />
+                    <Route
+                        path="films/showtime/:id/:tenphim"
+                        element={<ShowTime />}
+                    />
+                    <Route path="users" element={<Users />} />
+                    <Route path="users/addnew" element={<AddUser />} />
+                    <Route path="users/edit/:tk" element={<EditUser />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );
