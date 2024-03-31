@@ -85,6 +85,9 @@ function App() {
                     <Route path="users/addnew" element={<AddUser />} />
                     <Route path="users/edit/:tk" element={<EditUser />} />
                 </Route>
+                <Route path="/detail" element={<DetailTemplate></DetailTemplate>}>
+                    <Route path=":id" element={<Detail></Detail>}></Route>
+                </Route>
             </Routes>
         </BrowserRouter>
     );

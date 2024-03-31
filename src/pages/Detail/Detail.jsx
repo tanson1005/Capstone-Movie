@@ -6,30 +6,32 @@ import { Tabs, Rate } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { layThongTinChiTietPhim } from "../../redux/actions/QuanLyRapActions";
 import moment from "moment";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 const { TabPane } = Tabs;
 
-export default function Detail(props) {
-  const [show, setShow] = useState(false);
+export default function Detail() {
+    // const [show, setShow] = useState(false);
 
-  const filmDetail = useSelector((state) => state.QuanLyPhimReducer.filmDetail);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    let { id } = props.match.params;
-    dispatch(layThongTinChiTietPhim(id));
-  }, [dispatch, props.match.params]);
-
-  return (
-    <div
-      style={{
-        backgroundImage: `url(${filmDetail.hinhAnh})`,
-        backgroundSize: "100%",
-        backgroundPosition: "center",
-        minHeight: "100vh",
-      }}
-    >
-      {/* <CustomCard
+    // const filmDetail = useSelector((state) => state.QuanLyPhimReducer.filmDetail);
+    // const dispatch = useDispatch();
+    // useEffect(() => {
+    //   let { id } = props.match.params;
+    //   dispatch(layThongTinChiTietPhim(id));
+    // }, [dispatch, props.match.params]);
+    const history = useParams();
+    console.log({ history });
+    return (
+        <div
+            style={{
+                // backgroundImage: `url(${filmDetail.hinhAnh})`,
+                backgroundSize: "100%",
+                backgroundPosition: "center",
+                minHeight: "100vh",
+            }}
+        >
+            <h1>detail {history.id}</h1>
+            {/* <CustomCard
         style={{ paddingTop: 150, minHeight: "100vh" }}
         effectColor="#fff"
         blur={10}
@@ -181,6 +183,6 @@ export default function Detail(props) {
           </div>
         </CSSTransition>
       </CustomCard> */}
-    </div>
-  );
+        </div>
+    );
 }
