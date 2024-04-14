@@ -1,38 +1,30 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-// the translations
-// (tip move them in a JSON file and import them,
-// or even better, manage them separated from your code: https://react.i18next.com/guides/multiple-translation-files)
 const resources = {
   en: {
     translation: {
-      "Đăng nhập": "Login",
-      "Tài khoản": "UserName",
-      "Mật khẩu": "PassWord",
-      "Quên mật khẩu": "Forgot PassWord ?",
-      "Bạn chưa có tài khoản ?": "Don't have an account ?",
-      "Đăng ký": "Sign Up",
-      "Họ và tên": "Full Name",
-      "Số điện thoại": "Phone Number",
-      "Mã nhóm": "Group ID",
-      "Bạn đã có tài khoản ?": "Already have an account",
+      "Login": "Đăng nhập",
+      "UserName": "Tài khoản",
+      "PassWord": "Mật khẩu",
+      "Forgot PassWord ?": "Quên mật khẩu",
+      "Don't have an account ?": "Bạn chưa có tài khoản ?",
+      "Sign Up": "Đăng ký",
+      "Full Name": "Họ và tên",
+      "Phone Number": "Số điện thoại",
+      "Group ID": "Mã nhóm",
+      "Already have an account": "Bạn đã có tài khoản ?",
     },
   },
 };
-
 i18n
-  .use(initReactI18next) // passes i18n down to react-i18next
+  .use(initReactI18next)
   .init({
     resources,
-    lng: "vn",
-    // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
-    // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
-    // if you're using a language detector, do not define the lng option
-
+    lng: "en",
     interpolation: {
-      escapeValue: false, // react already safes from xss
+      escapeValue: false,
     },
   });
 
-export default i18n;
+export { i18n }; 

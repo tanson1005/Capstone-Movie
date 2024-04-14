@@ -1,13 +1,13 @@
-import { Fragment, useEffect } from "react";
-import { Route } from "react-router";
+import { Fragment, useEffect, Suspense } from "react";
+import { Outlet } from "react-router-dom";
 import { Select } from "antd";
 import { useTranslation } from "react-i18next";
 
 export const UserTemplate = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
-  const { Component, ...restProps } = props;
+  }, []);
+
   const { i18n } = useTranslation();
 
   const { Option } = Select;
@@ -16,13 +16,9 @@ export const UserTemplate = (props) => {
     i18n.changeLanguage(value);
   }
   return (
-    <Route
-      {...restProps}
-      render={(propsRoute) => {
-        return (
-          <Fragment>
-            <div className="lg:flex relative">
-              <div className="hidden lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
+    <Fragment>
+      <div className="lg:flex relative">
+        <div className="hidden lg:flex items-center justify-center bg-indigo-100 flex-1 h-screen">
                 <div className="max-w-xs transform duration-200 hover:scale-110 cursor-pointer">
                   <svg
                     className="w-5/6 mx-auto"
@@ -189,22 +185,21 @@ export const UserTemplate = (props) => {
                   </svg>
                 </div>
                 <div className="absolute right-20 top-14">
-                  <Select
-                    defaultValue="vn"
-                    style={{ width: 70 }}
-                    onChange={handleChange}
-                  >
-                    <Option value="en">EN</Option>
-                    <Option value="vn">VN</Option>
-                  </Select>
-                </div>
-              </div>
+                <Select
+        defaultValue={i18n.language}
+        style={{ width: 70 }}
+        onChange={handleChange}
+      >
+        <Option value="en">EN</Option>
+        <Option value="vn">VN</Option>
+      </Select>
+          </div>
+        </div>
 
-              <Component {...propsRoute} />
-            </div>
-          </Fragment>
-        );
-      }}
-    />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Outlet {...props} />
+        </Suspense>
+      </div>
+    </Fragment>
   );
 };

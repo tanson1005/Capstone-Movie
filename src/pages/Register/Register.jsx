@@ -22,6 +22,7 @@ export default function Register(props) {
   });
 
   return (
+    <Fragment>
     <form
       onSubmit={formik.handleSubmit}
       className="lg:w-1/2 xl:max-w-screen-sm"
@@ -182,5 +183,6 @@ export default function Register(props) {
         </div>
       </div>
     </form>
+    </Fragment>
   );
 }

@@ -20,6 +20,7 @@ export default function Login() {
   });
 
   return (
+    <Fragment>
     <form
       onSubmit={formik.handleSubmit}
       className="lg:w-1/2 xl:max-w-screen-sm"
@@ -128,5 +129,6 @@ export default function Login() {
         </div>
       </div>
     </form>
+    </Fragment>
   );
 }

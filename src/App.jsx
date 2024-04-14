@@ -26,53 +26,31 @@ const HomeLazy = lazy(() => {
     return import("./pages/Home/Home");
 });
 
+
+
 function App() {
     return (
         <BrowserRouter>
-            <Routes>
-                {/* <Route
-                    path="/home"
-                    element={<HomeTemplate Component={Home} />}
-                />
-                <Route
-                    path="/news"
-                    element={<HomeTemplate Component={News} />}
-                />
-                <Route
-                    path="/login"
-                    element={<UserTemplate Component={Login} />}
-                />
-                <Route
-                    path="/register"
-                    element={<UserTemplate Component={Register} />}
-                />
-                <Route
-                    path="/detail/:id"
-                    element={<DetailTemplate Component={Detail} />}
-                />
-                <Route
-                    path="/checkout/:id"
-                    element={<CheckoutTemplate Component={Checkout} />}
-                /> */}
-                {/* <Route path="/admin/*" element={<AdminTemplate />}>
-                    <Route path="films" element={<Films />} />
-                    <Route path="films/addnew" element={<AddNew />} />
-                    <Route path="films/edit/:id" element={<Edit />} />
-                    <Route
-                        path="films/showtime/:id/:tenphim"
-                        element={<ShowTime />}
-                    />
-                    <Route path="users" element={<Users />} />
-                    <Route path="users/addnew" element={<AddUser />} />
-                    <Route path="users/edit/:tk" element={<EditUser />} />
-                </Route> */}
-                {/* <Route path="/" element={<Home />} /> */}
-                {/* //lazy -> khi nào xài thì download (khi component được xuất hiện ra màn hình) -> cải thien hiệu năng*/}
-
+            <Routes>    
                 <Route path="" element={<HomeTemplate />}>
                     <Route path="" element={<HomeLazy />}></Route>
-                    <Route path="/news" element={<div>News page</div>}></Route>
+                    <Route path="/home" element={<Home />}></Route>
+                    <Route path="/news" element={<News />}></Route>
                 </Route>
+
+                <Route path="/checkoutTemplate" element={<CheckoutTemplate/>}>
+                <Route path="checkout" element={<Checkout/>}></Route>
+                </Route>
+
+                <Route path="/userTemplate" element={<UserTemplate/>}>
+                    <Route path="login" element={<Login/>}></Route>
+                    <Route path="register" element={<Register/>}></Route>
+                </Route>
+
+                <Route path="/detail" element={<Detail/>}>
+                    <Route path="detailTemplate" element={<DetailTemplate/>}></Route>
+                </Route>             
+
                 <Route path="/adminPage" element={<AdminTemplate />}>
                     <Route path="films" element={<Films />} />
                     <Route path="films/addnew" element={<AddNew />} />
@@ -85,6 +63,8 @@ function App() {
                     <Route path="users/addnew" element={<AddUser />} />
                     <Route path="users/edit/:tk" element={<EditUser />} />
                 </Route>
+
+
             </Routes>
         </BrowserRouter>
     );
